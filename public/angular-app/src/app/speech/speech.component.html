@@ -1,0 +1,13 @@
+<p>speech works!</p>
+<ng-container *ngIf="record$ | async as result">
+    <span
+        *ngFor="let result1 of result"
+        [class.transcript_final]="result1.isFinal">
+        
+        {{ result1[0].transcript }}
+    </span>
+    &nbsp;
+</ng-container>
+{{transcript}}
+<ng-template #placeholder> Say «start»... </ng-template>
+

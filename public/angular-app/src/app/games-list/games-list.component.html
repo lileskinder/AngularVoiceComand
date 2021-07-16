@@ -1,0 +1,36 @@
+<input type="text" id="mySearch" style="color: black;" value="{{transcript}}" [(ngModel)]="query" (keyup)="search($event)"/>
+<button type="button" (click)="startRecord()" class="btn-success">Start Record</button>
+<button type="button" (click)="stopRecord()" class="btn-warning">Stop Record</button>
+
+<ul>
+    <li *ngFor="let game of games | Search: query">
+        <a routerLink="/game/{{game._id}}">{{game.title}}</a><br>
+    </li>
+</ul>
+
+<form *ngIf="isAuthenticated()" name="gameForm" (submit)="addGame()" >
+    To add a new game please fill in the fields below: <br>
+    <p *ngIf="errorMessage.length" style="color: red;">{{errorMessage}}</p>
+
+    Title: <input type="text" name="title" required [(ngModel)]="newTitle" style="color: black;" /><br>
+
+    Price: <input type="text" name="price" required [(ngModel)]="newPrice" style="color: black;" /><br>
+
+    Year: <input type="text" name="year" required [(ngModel)]="newYear" style="color: black;" /><br>
+
+    Rating: <input type="text" name="rate" required [(ngModel)]="newRate" style="color: black;" /><br>
+
+    Minimum Players: <input type="text" name="minPlayers" required [(ngModel)]="newMinPlayers" style="color: black;" /><br>
+
+    Maximum Players: <input type="text" name="maxPlayers" required [(ngModel)]="newMaxPlayers" style="color: black;" /><br>
+
+    Minimum Age: <input type="text" name="minAge" required [(ngModel)]="newMinAge" style="color: black;" /><br>
+
+    Designers: <input type="text" name="designer" required [(ngModel)]="newDesigners" style="color: black;" /><br>
+
+    <button type="submit" class="btn-success">Add Game</button>
+    <p *ngIf="success.length" style="color: green;">{{newTitle}} {{success}}</p>
+    
+</form>
+
+
